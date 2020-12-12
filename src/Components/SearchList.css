@@ -1,0 +1,18 @@
+/* Typography */
+.search_list a {
+  font-family: 'Montserrat', serif;
+  text-decoration: none;
+  display: table-cell;
+  vertical-align: middle;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: #404040;
+}
+.search_list a .option_list {
+  height: 42px;
+  padding-left: 16px;
+  display: flex;
+  align-items: center;
+}

@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 import './Search.css'
+import { SearchList } from './SearchList'
 
 export const Search = () => {
   const [query, setQuery] = useState('')
   const [result, setResult] = useState([])
+  const [statusList, setStatusList] = useState('wait')
+  const [statusIcon, setStatusIcon] = useState('fa-search search-icon')
 
   const filterResults = (results) => {
     if (results.length > 0) {
@@ -17,6 +20,7 @@ export const Search = () => {
   }
 
   const fetchSearchResults = async (resultQuery) => {
+    setStatusIcon('fa-search search-icon')
     const searchURL = `https://rickandmortyapi.com/api/character/?name=${resultQuery}`
     let response = []
 
@@ -41,11 +45,18 @@ export const Search = () => {
     }
   }
 
+  const userSelectedOption = (selection) => {
+    setQuery(selection)
+    setStatusList('loading')
+    setStatusIcon('fa-spinner')
+    setResult([])
+  }
+
   const renderResult = () => {
     if (query !== '') {
       return result.map((element, index) => {
         return (
-                    <p key={index}>{element.name}</p>
+                    <SearchList key={index} searchElement={element} selectElement={userSelectedOption} querySearch={query} />
         )
       })
     }
@@ -55,18 +66,19 @@ export const Search = () => {
         <div className={'search_container'}>
             {/* Search Input */}
             <p className={'search_title'}>Encuentra profesionales de confianza</p>
-            <label className="search-label" htmlFor="search-input">
+            <div className={`search_input_content ${statusList}`} htmlFor="search-input">
                 <input
-                    className={'search_input'}
                     type="text"
                     value={query}
                     id="search-input"
                     placeholder="Qué necesitas..."
                     onChange={handleOnInputChange}
                 />
-                <i className="fa fa-search search-icon"/>
-            </label>
+                <i className={`fa ${statusIcon}`}/>
+            </div>
+          <ul className={'search_list'}>
             {renderResult()}
+          </ul>
         </div>
   )
 }
