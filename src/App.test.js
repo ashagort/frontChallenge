@@ -1,8 +1,19 @@
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import App from './App'
 
-test('renders learn react link', () => {
-  render(<App />)
-  const linkElement = screen.getByText(/learn react/i)
-  expect(linkElement).toBeInTheDocument()
+describe('App layout shoul', function () {
+  let wrapper
+
+  beforeEach(function () {
+    wrapper = render(
+      // eslint-disable-next-line react/react-in-jsx-scope
+    <App />
+    )
+  })
+
+  it('Input content', function () {
+    const { container } = wrapper
+
+    expect(container.getElementsByClassName('habitissimo_challenge')).toBeDefined()
+  })
 })
