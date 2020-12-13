@@ -9,6 +9,7 @@ export const Search = () => {
   const [result, setResult] = useState([])
   const [statusList, setStatusList] = useState('wait')
   const [statusIcon, setStatusIcon] = useState('fa-search search-icon')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const filterResults = (results) => {
     if (results.length > 0) {
@@ -26,11 +27,13 @@ export const Search = () => {
 
     try {
       response = await axios.get(searchURL)
+      if (response.status !== 200) {
+        setErrorMessage('No hay resultado para tu busqueda')
+      }
+      filterResults(response.data.results)
     } catch (e) {
       console.error(e, 'Error network')
     }
-
-    filterResults(response.data.results)
   }
 
   const handleOnInputChange = (event) => {
@@ -79,6 +82,7 @@ export const Search = () => {
           <ul className={'search_list'}>
             {renderResult()}
           </ul>
+          <div className={'error_message'}>{errorMessage}</div>
         </div>
   )
 }

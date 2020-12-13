@@ -11,6 +11,7 @@ body {
   height: 100%;
   width: 100%;
 }
+/* Typography */
 .habitissimo_challenge {
   width: 50%;
   margin: 0 auto;
@@ -18,4 +19,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+@media only screen and (max-width: 548px) {
+  .habitissimo_challenge {
+    width: 100%;
+  }
 }

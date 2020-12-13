@@ -5,7 +5,7 @@
   display: table-cell;
   vertical-align: middle;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 16px;
   line-height: 22px;
   color: #404040;
@@ -15,4 +15,8 @@
   padding-left: 16px;
   display: flex;
   align-items: center;
+}
+.search_list a .option_list .search_bold {
+  font-weight: bold;
+  background-color: transparent;
 }

@@ -3,6 +3,11 @@
   margin-top: 1em;
   width: 460px;
 }
+@media only screen and (max-width: 548px) {
+  .search_container {
+    width: 100%;
+  }
+}
 .search_container .search_title {
   font-family: 'Montserrat', serif;
   font-style: normal;
